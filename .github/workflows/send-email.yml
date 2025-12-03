@@ -1,0 +1,35 @@
+name: Send Good Morning Email
+
+on:
+  schedule:
+    # Runs at 8:00 AM WAT (West Africa Time = UTC+1)
+    # This is 07:00 UTC (8am WAT - 1 hour)
+    - cron: '0 7 * * *'
+  
+  # Allows manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Send email
+        env:
+          MAILTRAP_HOST: ${{ secrets.MAILTRAP_HOST }}
+          MAILTRAP_PORT: ${{ secrets.MAILTRAP_PORT }}
+          MAILTRAP_USER: ${{ secrets.MAILTRAP_USER }}
+          MAILTRAP_PASS: ${{ secrets.MAILTRAP_PASS }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: npm start

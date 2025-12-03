@@ -1,0 +1,16 @@
+{
+	"name": "morning-email-cron",
+	"version": "1.0.0",
+	"description": "Sends good morning email at 8am daily",
+	"main": "send-email.js",
+	"scripts": {
+		"start": "node send-email.js",
+		"test": "node send-email.js"
+	},
+	"dependencies": {
+		"nodemailer": "^6.9.7"
+	},
+	"devDependencies": {
+		"dotenv": "^17.2.3"
+	}
+}
