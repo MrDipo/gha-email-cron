@@ -1,5 +1,4 @@
-import nodemailer from 'nodemailer';
-import 'dotenv/config';
+import * as nodemailer from 'nodemailer';
 
 const sendGoodMorningEmail = async () => {
   const transporter = nodemailer.createTransport({
